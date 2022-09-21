@@ -27,9 +27,13 @@ public class WaitForDeptarture extends FedExCILOrderCreation {
 			FedExCILOrderCreation OC = new FedExCILOrderCreation();
 			OC.getStageName();
 
+			// --Get the timeZone
+			String tzone = isElementPresent("TLLOCDActTimZone_id").getText();
+			String rectime = getTimeAsTZone(tzone);
+
 			// --Departure Time
 			isElementPresent("TLWFDTime_id").clear();
-			isElementPresent("TLWFDTime_id").sendKeys(rdytime);
+			isElementPresent("TLWFDTime_id").sendKeys(rectime);
 			isElementPresent("TLWFDTime_id").sendKeys(Keys.TAB);
 			logs.info("Enter Departure Time");
 

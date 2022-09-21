@@ -61,64 +61,76 @@ public class BaseInit {
 
 	String BaseURL;
 
-	String driverPath = ("D:\\Tathya\\selenium\\chromedriver_win32\\chromedriver.exe");
-
 	@BeforeSuite
 	public void beforeMethod() throws InterruptedException, IOException {
-		storage = new Properties();
-		FileInputStream fi = new FileInputStream(".\\src\\main\\resources\\config.properties");
-		storage.load(fi);
-		// --Opening Chrome Browser
-		DesiredCapabilities capabilities = new DesiredCapabilities();
-		WebDriverManager.chromedriver().setup();
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--headless", "--window-size=1382, 744");
-		//options.addArguments("--headless", "--window-size=1920,1200");
-		options.addArguments("--incognito");
-		options.addArguments("--test-type");
-		options.addArguments("--no-proxy-server");
-		options.addArguments("--proxy-bypass-list=*");
-		options.addArguments("--disable-extensions");
-		options.addArguments("--no-sandbox");
-		options.addArguments("enable-automation");
-		options.addArguments("--dns-prefetch-disable");
-		options.addArguments("--disable-gpu");
-		String downloadFilepath = System.getProperty("user.dir") + "\\src\\main\\resources\\Downloads";
-		HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
-		chromePrefs.put("profile.default_content_settings.popups", 0);
-		chromePrefs.put("download.prompt_for_download", "false");
-		chromePrefs.put("safebrowsing.enabled", "false");
-		chromePrefs.put("download.default_directory", downloadFilepath);
-		options.setExperimentalOption("prefs", chromePrefs);
-		capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-		capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-		capabilities.setPlatform(Platform.ANY);
-		driver = new ChromeDriver(options);
+		if (driver == null) {
+			String logFilename = this.getClass().getSimpleName();
+			logs = Logger.getLogger(logFilename);
+			startTest();
+			storage = new Properties();
+			FileInputStream fi = new FileInputStream(".\\src\\main\\resources\\config.properties");
+			storage.load(fi);
+			logs.info("initialization of the properties file is done");
 
-		/*
-		 * // Set new size Dimension newDimension = new Dimension(1366, 788);
-		 * driver.manage().window().setSize(newDimension);
-		 * 
-		 * // Getting Dimension newSetDimension = driver.manage().window().getSize();
-		 * int newHeight = newSetDimension.getHeight(); int newWidth =
-		 * newSetDimension.getWidth(); System.out.println("Current height: " +
-		 * newHeight); System.out.println("Current width: " + newWidth);
-		 */
+			// --Opening Chrome Browser
+			DesiredCapabilities capabilities = new DesiredCapabilities();
+			WebDriverManager.chromedriver().setup();
+			ChromeOptions options = new ChromeOptions();
+			// options.addArguments("--headless", "--window-size=1382, 744");
+			options.addArguments("--incognito");
+			options.addArguments("--test-type");
+			options.addArguments("--no-proxy-server");
+			options.addArguments("--proxy-bypass-list=*");
+			options.addArguments("--disable-extensions");
+			options.addArguments("--no-sandbox");
+			options.addArguments("enable-automation");
+			options.addArguments("--dns-prefetch-disable");
+			options.addArguments("--disable-gpu");
+			// options.addArguments("--start-maximized");
+			// options.addArguments("window-size=1920,1200");
+			String downloadFilepath = System.getProperty("user.dir") + "\\src\\main\\resources\\Downloads";
+			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+			chromePrefs.put("profile.default_content_settings.popups", 0);
+			chromePrefs.put("download.prompt_for_download", "false");
+			chromePrefs.put("safebrowsing.enabled", "false");
+			chromePrefs.put("download.default_directory", downloadFilepath);
+			options.setExperimentalOption("prefs", chromePrefs);
+			capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+			capabilities.setPlatform(Platform.ANY);
+			driver = new ChromeDriver(options);
 
-		String Env = storage.getProperty("Env");
-		System.out.println("Env " + Env);
-		String baseUrl = null;
-		if (Env.equalsIgnoreCase("Pre-Prod")) {
-			baseUrl = storage.getProperty("PREPRODURL");
-		} else if (Env.equalsIgnoreCase("STG")) {
-			baseUrl = storage.getProperty("STGURL");
-		} else if (Env.equalsIgnoreCase("DEV")) {
-			baseUrl = storage.getProperty("DEVURL");
+			// Default size
+			driver.manage().window().maximize();
+
+			/*
+			 * Dimension currentDimension = driver.manage().window().getSize(); int height =
+			 * currentDimension.getHeight(); int width = currentDimension.getWidth();
+			 * System.out.println("Current height: " + height);
+			 * System.out.println("Current width: " + width);
+			 * System.out.println("window size==" + driver.manage().window().getSize());
+			 */
+
+			/*
+			 * Dimension newDimension = new Dimension(1038, 776);
+			 * driver.manage().window().setSize(newDimension);
+			 */
+
+			String Env = storage.getProperty("Env");
+			System.out.println("Env " + Env);
+			String baseUrl = null;
+			if (Env.equalsIgnoreCase("Pre-Prod")) {
+				baseUrl = storage.getProperty("PREPRODURL");
+			} else if (Env.equalsIgnoreCase("STG")) {
+				baseUrl = storage.getProperty("STGURL");
+			} else if (Env.equalsIgnoreCase("DEV")) {
+				baseUrl = storage.getProperty("DEVURL");
+			}
+
+			driver.get(baseUrl);
+			Thread.sleep(2000);
+
 		}
-		Thread.sleep(2000);
-		driver.get(baseUrl);
-
-		Thread.sleep(5000);
 
 	}
 
@@ -283,7 +295,7 @@ public class BaseInit {
 				getScreenshot(driver, "LoginIssue");
 				driver.quit();
 				Env = storage.getProperty("Env");
-				String File = ".\\Report\\RTE_Screenshot\\LoginIssue.png";
+				String File = ".\\Report\\FDXCIL_ScreenShot\\LoginIssue.png";
 				Env = storage.getProperty("Env");
 				String subject = "Selenium Automation Script:" + Env + " RTE Smoke";
 
@@ -322,7 +334,7 @@ public class BaseInit {
 				getScreenshot(driver, "LoginIssue");
 				driver.quit();
 				Env = storage.getProperty("Env");
-				String File = ".\\Report\\RTE_Screenshot\\LoginIssue.png";
+				String File = ".\\Report\\FDXCIL_ScreenShot\\LoginIssue.png";
 				Env = storage.getProperty("Env");
 				String subject = "Selenium Automation Script:" + Env + " RTE Smoke";
 
@@ -361,7 +373,7 @@ public class BaseInit {
 				getScreenshot(driver, "LoginIssue");
 				driver.quit();
 				Env = storage.getProperty("Env");
-				String File = ".\\Report\\RTE_Screenshot\\LoginIssue.png";
+				String File = ".\\Report\\FDXCIL_ScreenShot\\LoginIssue.png";
 				Env = storage.getProperty("Env");
 				String subject = "Selenium Automation Script:" + Env + " RTE Smoke";
 
@@ -604,7 +616,12 @@ public class BaseInit {
 
 	@AfterSuite
 	public void SendEmail() throws Exception {
-		logOut();
+		try {
+			logOut();
+		} catch (Exception e) {
+			System.out.println("Logout is not there for FedExCIL");
+			logs.info("Logout is not there for FedExCIL");
+		}
 		report.flush();
 		// --Close browser
 		Complete();

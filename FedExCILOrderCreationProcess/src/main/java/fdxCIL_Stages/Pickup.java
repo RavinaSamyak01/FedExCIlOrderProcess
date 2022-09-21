@@ -17,7 +17,7 @@ public class Pickup extends BaseInit {
 	public void confirmPickup() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, 30);// wait time
 		Actions act = new Actions(driver);
-		//JavascriptExecutor js = (JavascriptExecutor) driver;
+		// JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 
@@ -48,9 +48,14 @@ public class Pickup extends BaseInit {
 			 */
 
 			if (svc.equals("LOC") || svc.equals("P3P") || svc.equals("DRV") || svc.equals("SDC") || svc.equals("FRG")) {
+
+				// --Get the timeZone
+				String tzone = isElementPresent("TLLOCDActTimZone_id").getText();
+				String rectime = getTimeAsTZone(tzone);
+
 				// --Enter Actual Pickup Time
 				isElementPresent("TLPActPUpTime_id").clear();
-				isElementPresent("TLPActPUpTime_id").sendKeys(rdytime);
+				isElementPresent("TLPActPUpTime_id").sendKeys(rectime);
 				isElementPresent("TLPActPUpTime_id").sendKeys(Keys.TAB);
 				logs.info("Enter Actual pickup time");
 
@@ -99,9 +104,13 @@ public class Pickup extends BaseInit {
 						logs.info("Click on Job Overview Tab");
 						wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 
+						// --Get the timeZone
+						tzone = isElementPresent("TLLOCDActTimZone_id").getText();
+						rectime = getTimeAsTZone(tzone);
+
 						// --Enter Actual Pickup Time
 						isElementPresent("TLPActPUpTime_id").clear();
-						isElementPresent("TLPActPUpTime_id").sendKeys(rdytime);
+						isElementPresent("TLPActPUpTime_id").sendKeys(rectime);
 						isElementPresent("TLPActPUpTime_id").sendKeys(Keys.TAB);
 						logs.info("Enter Actual pickup time");
 
@@ -123,9 +132,14 @@ public class Pickup extends BaseInit {
 			}
 
 			if (svc.equals("SD") || svc.equals("PA") || svc.equals("AIR") || svc.equals("FRA")) {
+
+				// --Get the timeZone
+				String tzone = isElementPresent("TLLOCDActTimZone_id").getText();
+				String rectime = getTimeAsTZone(tzone);
+
 				// --Enter Actual Pickup Time
 				isElementPresent("TLPActPUpTime_id").clear();
-				isElementPresent("TLPActPUpTime_id").sendKeys(rdytime);
+				isElementPresent("TLPActPUpTime_id").sendKeys(rectime);
 				isElementPresent("TLPActPUpTime_id").sendKeys(Keys.TAB);
 				logs.info("Enter Actual pickup time");
 
@@ -175,9 +189,13 @@ public class Pickup extends BaseInit {
 						logs.info("Click on Job Overview Tab");
 						wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 
+						// --Get the timeZone
+						tzone = isElementPresent("TLLOCDActTimZone_id").getText();
+						rectime = getTimeAsTZone(tzone);
+
 						// --Enter Actual Pickup Time
 						isElementPresent("TLPActPUpTime_id").clear();
-						isElementPresent("TLPActPUpTime_id").sendKeys(rdytime);
+						isElementPresent("TLPActPUpTime_id").sendKeys(rectime);
 						isElementPresent("TLPActPUpTime_id").sendKeys(Keys.TAB);
 						logs.info("Enter Actual pickup time");
 

@@ -3,9 +3,27 @@
 <suite name="FedExCILSuite">
 	<test thread-count="5" name="FedExCILOrderCreation">
 		<classes>
-			<class name="fedexCILStaging.FedExCILOrderCreation"></class>
-
-
+			<class name="fdxCIL_OrderProcess.FedExCILOrderCreation"></class>
+		</classes>
+	</test>
+	<test thread-count="5" name="CPU">
+		<classes>
+			<class name="fdxCIL_OrderProcess.CPU"></class>
+		</classes>
+	</test>
+	<test thread-count="5" name="H3P">
+		<classes>
+			<class name="fdxCIL_OrderProcess.H3P"></class>
+		</classes>
+	</test>
+	<test thread-count="5" name="SD">
+		<classes>
+			<class name="fdxCIL_OrderProcess.SD"></class>
+		</classes>
+	</test>
+	<test thread-count="5" name="LOC">
+		<classes>
+			<class name="fdxCIL_OrderProcess.LOC"></class>
 		</classes>
 	</test> <!-- NASmoke -->
 </suite> <!-- NASuite -->

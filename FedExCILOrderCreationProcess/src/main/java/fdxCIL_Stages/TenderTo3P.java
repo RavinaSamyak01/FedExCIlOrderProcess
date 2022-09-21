@@ -13,7 +13,7 @@ import fdxCIL_OrderProcess.FedExCILOrderCreation;
 public class TenderTo3P extends FedExCILOrderCreation {
 
 	@Test
-	public static void tndrTo3P() throws Exception {
+	public void tndrTo3P() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, 30);// wait time
 
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
@@ -64,10 +64,14 @@ public class TenderTo3P extends FedExCILOrderCreation {
 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("txt3pTime")));
 
+			// --Get the timeZone
+			String tzone = isElementPresent("TLLOCDActTimZone_id").getText();
+			String rectime = getTimeAsTZone(tzone);
+
 			// --Enter Drop Time
 			WebElement DropTime = isElementPresent("TT3droptime_id");
 			DropTime.clear();
-			DropTime.sendKeys(rdytime);
+			DropTime.sendKeys(rectime);
 			DropTime.sendKeys(Keys.TAB);
 			logs.info("Entered Drop time");
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));

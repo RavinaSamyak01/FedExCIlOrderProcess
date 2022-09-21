@@ -24,9 +24,7 @@ public class Board extends BaseInit {
 
 			wait.until(ExpectedConditions
 					.visibilityOfElementLocated(By.xpath("//*[@id=\"lblStages\"][contains(text(),'ON BOARD')]")));
-			OrderCreation OC = new OrderCreation();
-			OC.getStageName();
-
+		
 			// --Click on Update button
 			WebElement update = isElementPresent("TLAckBTn2_id");
 			wait.until(ExpectedConditions.elementToBeClickable(update));

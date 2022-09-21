@@ -32,9 +32,13 @@ public class Drop extends BaseInit {
 			FedExCILOrderCreation OC = new FedExCILOrderCreation();
 			OC.getStageName();
 
+			// --Get the timeZone
+			String tzone = isElementPresent("TLLOCDActTimZone_id").getText();
+			String rectime = getTimeAsTZone(tzone);
+
 			// --Enter DropOff time
 			WebElement dropoff = isElementPresent("TLDAODrpOfTime_id");
-			dropoff.sendKeys(rdytime);
+			dropoff.sendKeys(rectime);
 			dropoff.sendKeys(Keys.TAB);
 			logs.info("Enter Drop off time");
 
@@ -200,9 +204,13 @@ public class Drop extends BaseInit {
 					isElementPresent("TLDSignature_id").sendKeys("RVOza");
 					logs.info("Enter Signature");
 
+					// --Get the timeZone
+					tzone = isElementPresent("TLLOCDActTimZone_id").getText();
+					rectime = getTimeAsTZone(tzone);
+
 					// --Enter Actual DL time
 					isElementPresent("TLDActDLTime_id").clear();
-					isElementPresent("TLDActDLTime_id").sendKeys(rdytime);
+					isElementPresent("TLDActDLTime_id").sendKeys(rectime);
 					logs.info("Enter Actual DL Time");
 
 					// --Click on COnfirm Drop

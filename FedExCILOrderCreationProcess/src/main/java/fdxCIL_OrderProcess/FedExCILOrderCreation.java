@@ -1,20 +1,13 @@
 package fdxCIL_OrderProcess;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,30 +17,24 @@ import fdxCIL_BasePackage.BaseInit;
 
 public class FedExCILOrderCreation extends BaseInit {
 	static double OrderCreationTime;
-	static StringBuilder msg = new StringBuilder();
 	static String jobid;
 
 	@Test
-	public static void fedEXCILOrder() throws Exception {
+	public void fedEXCILOrder() throws Exception {
 
 		long start, end;
-		WebDriverWait wait = new WebDriverWait(driver, 5);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		// JavascriptExecutor jse = (JavascriptExecutor) driver;
 
-		// Read data from Excel
-		File src = new File(".\\TestFiles\\FedExCILTestResult.xlsx");
-		FileInputStream fis = new FileInputStream(src);
-		Workbook workbook = WorkbookFactory.create(fis);
-		Sheet sh1 = workbook.getSheet("Sheet1");
+		for (int i = 1; i < 16; i++) {
+			String file = getData("Sheet1", i, 0);
 
-		for (int i = 1; i < 5; i++) {
-			DataFormatter formatter = new DataFormatter();
-			String file = formatter.formatCellValue(sh1.getRow(i).getCell(0));
 			// String TFolder=".//TestFiles//";
-			driver.findElement(By.id("MainContent_ctrlfileupload"))
-					.sendKeys("C:\\Users\\tgandhi\\FedExCIL\\FedExCIL\\FedExCIL\\TestFiles\\" + file + ".txt");
+			String TFileFolder = System.getProperty("user.dir") + "\\src\\main\\resources\\TestFiles\\";
+			driver.findElement(By.id("MainContent_ctrlfileupload")).sendKeys(TFileFolder + file + ".txt");
 			Thread.sleep(1000);
 			driver.findElement(By.id("MainContent_btnProcess")).click();
+
 			// --start time
 			start = System.nanoTime();
 			Thread.sleep(3000);
@@ -69,12 +56,8 @@ public class FedExCILOrderCreation extends BaseInit {
 					jobid = matcher.group();
 					System.out.println("JOB# " + jobid);
 
-					File src1 = new File(".\\TestFiles\\FedExCILTestResult.xlsx");
-					FileOutputStream fis1 = new FileOutputStream(src1);
-					Sheet sh2 = workbook.getSheet("Sheet1");
-					sh2.getRow(i).createCell(1).setCellValue(jobid);
-					workbook.write(fis1);
-					fis1.close();
+					// -Set JobID in excel
+					setData("Sheet1", i, 1, jobid);
 					msg.append("JOB # " + jobid + "\n");
 					getScreenshot(driver, "FedExCILResponse");
 
@@ -94,6 +77,45 @@ public class FedExCILOrderCreation extends BaseInit {
 		}
 		Thread.sleep(5000);
 
+	}
+
+	public void searchFedExCILJob(int i) throws Exception {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;// scroll,click
+		WebDriverWait wait = new WebDriverWait(driver, 30);// wait time
+		Actions act = new Actions(driver);
+
+		// Login
+		login();
+
+		// --Go To Operations
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("a_operations")));
+		WebElement Operations = isElementPresent("OperationsTab_id");
+		act.moveToElement(Operations).click().perform();
+		logs.info("Clicked on Operations");
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
+
+		wait.until(ExpectedConditions
+				.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class=\"OpenCloseClass dropdown open\"]//ul")));
+
+		// --Go to TaskLog
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("a_TaskLog")));
+		isElementPresent("TaskLog_id").click();
+		logs.info("Clicked on TaskLog");
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
+
+		getScreenshot(driver, "TaskLog");
+
+		// Enter Account#
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
+
+		String JobId = getData("Sheet1", i, 1);
+		driver.findElement(By.id("txtContains")).sendKeys(JobId);
+		driver.findElement(By.id("txtContains")).sendKeys(Keys.TAB);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
+
+		WebElement Search = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnGlobalSearch")));
+		jse.executeScript("arguments[0].click();", Search);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 	}
 
 	public String getServiceID() {

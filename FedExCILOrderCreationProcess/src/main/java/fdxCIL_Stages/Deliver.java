@@ -17,7 +17,7 @@ public class Deliver extends BaseInit {
 	public void confirmDelivery() throws Exception {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;// scroll,click
 		WebDriverWait wait = new WebDriverWait(driver, 30);// wait time
-		//Actions act = new Actions(driver);
+		// Actions act = new Actions(driver);
 
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 		String svc = null;
@@ -35,9 +35,14 @@ public class Deliver extends BaseInit {
 			OC.getStageName();
 
 			if (svc.equals("LOC") || svc.equals("DRV") || svc.equals("SDC") || svc.equals("FRG")) {
+
+				// --Get the timeZone
+				String tzone = isElementPresent("TLLOCDActTimZone_id").getText();
+				String rectime = getTimeAsTZone(tzone);
+
 				// --Enter Actual DL time
 				isElementPresent("TLDActDLTime_id").clear();
-				isElementPresent("TLDActDLTime_id").sendKeys(rdytime);
+				isElementPresent("TLDActDLTime_id").sendKeys(rectime);
 				logs.info("Enter Actual DL Time");
 
 				// --Enter SIgnature
@@ -67,7 +72,7 @@ public class Deliver extends BaseInit {
 
 			if (svc.equals("SD") || svc.equals("PA") || svc.equals("FRA")) {
 				// --Get the timeZone
-				String tzone = isElementPresent("TLDACDTimeZone_id").getText();
+				String tzone = isElementPresent("TLSDDActTimZone_id").getText();
 				String rectime = getTimeAsTZone(tzone);
 
 				// --Enter Actual Del Time
@@ -81,7 +86,7 @@ public class Deliver extends BaseInit {
 				logs.info("Enter Signature");
 
 				// --Click on Confirm DL
-				WebElement ConDL = isElementPresent("TLDAOConfDrop_id");
+				WebElement ConDL = isElementPresent("TLDConfDL2_id");
 				wait.until(ExpectedConditions.elementToBeClickable(ConDL));
 				jse.executeScript("arguments[0].click();", ConDL);
 				logs.info("Clicked on Confirm DEL button");
@@ -119,7 +124,7 @@ public class Deliver extends BaseInit {
 				logs.info("Enter Signature");
 
 				// --Click on Confirm DL
-				WebElement ConDL = isElementPresent("TLDAIRDLStage_id");
+				WebElement ConDL = isElementPresent("TLDConfDL2_id");
 				wait.until(ExpectedConditions.elementToBeClickable(ConDL));
 				jse.executeScript("arguments[0].click();", ConDL);
 				logs.info("Clicked on Confirm DEL button");
