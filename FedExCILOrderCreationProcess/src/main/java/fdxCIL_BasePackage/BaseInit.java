@@ -166,7 +166,7 @@ public class BaseInit {
 		File source = ts.getScreenshotAs(OutputType.FILE);
 		// after execution, you could see a folder "FailedTestsScreenshots" under src
 		// folder
-		String destination = System.getProperty("user.dir") + "/Report/Connect_Screenshot/" + screenshotName + ".png";
+		String destination = System.getProperty("user.dir") + "/Report/FedEXCIL_Screenshot/" + screenshotName + ".png";
 		File finalDestination = new File(destination);
 		FileUtils.copyFile(source, finalDestination);
 		return destination;
@@ -276,16 +276,16 @@ public class BaseInit {
 		String Env = storage.getProperty("Env");
 		String baseUrl = null;
 		if (Env.equalsIgnoreCase("Pre-Prod")) {
-			baseUrl = storage.getProperty("PREPRODURL");
+			baseUrl = storage.getProperty("PREPRODConnectURL");
 			driver.get(baseUrl);
 			Thread.sleep(2000);
 			try {
 				wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("login")));
-				String UserName = storage.getProperty("PREPRODUserName");
+				String UserName = storage.getProperty("PREPRODConnectUserName");
 				highLight(isElementPresent("UserName_id"), driver);
 				isElementPresent("UserName_id").sendKeys(UserName);
 				logs.info("Entered UserName");
-				String Password = storage.getProperty("PREPRODPassword");
+				String Password = storage.getProperty("PREPRODConnectPassword");
 				highLight(isElementPresent("Password_id"), driver);
 				isElementPresent("Password_id").sendKeys(Password);
 				logs.info("Entered Password");
@@ -297,7 +297,7 @@ public class BaseInit {
 				Env = storage.getProperty("Env");
 				String File = ".\\Report\\FDXCIL_ScreenShot\\LoginIssue.png";
 				Env = storage.getProperty("Env");
-				String subject = "Selenium Automation Script:" + Env + " RTE Smoke";
+				String subject = "Selenium Automation Script:" + Env + " FedEXCIL Order Creation&Processing";
 
 				try {
 //					/kunjan.modi@samyak.com, pgandhi@samyak.com,parth.doshi@samyak.com
@@ -316,16 +316,16 @@ public class BaseInit {
 			}
 
 		} else if (Env.equalsIgnoreCase("STG")) {
-			baseUrl = storage.getProperty("STGURL");
+			baseUrl = storage.getProperty("STGConnectURL");
 			driver.get(baseUrl);
 			Thread.sleep(2000);
 			try {
 				wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("login")));
-				String UserName = storage.getProperty("STGUserName");
+				String UserName = storage.getProperty("STGConnectUserName");
 				highLight(isElementPresent("UserName_id"), driver);
 				isElementPresent("UserName_id").sendKeys(UserName);
 				logs.info("Entered UserName");
-				String Password = storage.getProperty("STGPassword");
+				String Password = storage.getProperty("STGConnectPassword");
 				highLight(isElementPresent("Password_id"), driver);
 				isElementPresent("Password_id").sendKeys(Password);
 				logs.info("Entered Password");
@@ -336,7 +336,7 @@ public class BaseInit {
 				Env = storage.getProperty("Env");
 				String File = ".\\Report\\FDXCIL_ScreenShot\\LoginIssue.png";
 				Env = storage.getProperty("Env");
-				String subject = "Selenium Automation Script:" + Env + " RTE Smoke";
+				String subject = "Selenium Automation Script:" + Env + " FedEXCIL Order Creation&Processing";
 
 				try {
 //					/kunjan.modi@samyak.com, pgandhi@samyak.com,parth.doshi@samyak.com
@@ -375,7 +375,7 @@ public class BaseInit {
 				Env = storage.getProperty("Env");
 				String File = ".\\Report\\FDXCIL_ScreenShot\\LoginIssue.png";
 				Env = storage.getProperty("Env");
-				String subject = "Selenium Automation Script:" + Env + " RTE Smoke";
+				String subject = "Selenium Automation Script:" + Env + " FedEXCIL Order Creation&Processing";
 
 				try {
 //					/kunjan.modi@samyak.com, pgandhi@samyak.com,parth.doshi@samyak.com
@@ -634,7 +634,7 @@ public class BaseInit {
 		msg.append("Please find attached file of Report and Log");
 
 		String Env = storage.getProperty("Env");
-		String subject = "Selenium Automation Script:" + Env + " Connect Order Creation&Processing";
+		String subject = "Selenium Automation Script:" + Env + " FedExCIL Order Creation&Processing";
 		String File = ".\\Report\\ExtentReport\\ExtentReportResults.html,.\\Report\\log\\ConnectOrderProcess.html";
 
 		try {

@@ -17,7 +17,7 @@ import fdxCIL_BasePackage.ExcelDataProvider;
 
 public class ConfirmPull extends BaseInit {
 
-	public static void FedExConfirmPull() throws Exception{
+	public void FedExConfirmPull() throws Exception{
 		JavascriptExecutor jse = (JavascriptExecutor) driver;// scroll,click
 		WebDriverWait wait = new WebDriverWait(driver, 50);// wait time
 		for(int i=3; i<4;i++)

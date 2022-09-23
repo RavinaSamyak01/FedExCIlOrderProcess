@@ -20,13 +20,12 @@ public class FedExCILOrderCreation extends BaseInit {
 	static String jobid;
 
 	@Test
-	public void fedEXCILOrder() throws Exception {
-
+	public void fedEXCILOrderCreate(int i) throws Exception {
 		long start, end;
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		// JavascriptExecutor jse = (JavascriptExecutor) driver;
 
-		for (int i = 1; i < 16; i++) {
+		//for (int i = 1; i < 16; i++) {
 			String file = getData("Sheet1", i, 0);
 
 			// String TFolder=".//TestFiles//";
@@ -74,7 +73,7 @@ public class FedExCILOrderCreation extends BaseInit {
 
 			}
 
-		}
+		//}
 		Thread.sleep(5000);
 
 	}
@@ -109,6 +108,7 @@ public class FedExCILOrderCreation extends BaseInit {
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 
 		String JobId = getData("Sheet1", i, 1);
+		msg.append("JOBID=" + JobId + "\n");
 		driver.findElement(By.id("txtContains")).sendKeys(JobId);
 		driver.findElement(By.id("txtContains")).sendKeys(Keys.TAB);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
@@ -170,26 +170,61 @@ public class FedExCILOrderCreation extends BaseInit {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		Actions act = new Actions(driver);
 
-		// --Unknown Shipper click
-		WebElement UnShipper = isElementPresent("TLUnShipp_id");
-		wait.until(ExpectedConditions.visibilityOf(UnShipper));
-		wait.until(ExpectedConditions.elementToBeClickable(UnShipper));
-		act.moveToElement(UnShipper).build().perform();
-		js.executeScript("arguments[0].click();", UnShipper);
-		logs.info("Clicked on Unknown Shipper");
+		// --Go to Edit Job tab
+		WebElement EditOrTab = isElementPresent("EOEditOrderTab_id");
+		act.moveToElement(EditOrTab).build().perform();
+		wait.until(ExpectedConditions.elementToBeClickable(EditOrTab));
+		act.moveToElement(EditOrTab).click().perform();
+		logs.info("Click on Edit Order Tab");
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 
-		// --Wait for pop up of Unknown Shipper
-		wait.until(
-				ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class=\"modal-dialog modal-sm\"]")));
+		String ServiceID = getServiceID();
 
-		// --Click on Confirm Button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnConfirmExtrernal")));
-		WebElement UnShCOnfirm = isElementPresent("TLUnShConfrm_id");
-		wait.until(ExpectedConditions.elementToBeClickable(UnShCOnfirm));
-		UnShCOnfirm.click();
-		logs.info("Clicked on Confirm button");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
+		if (ServiceID.equalsIgnoreCase("SD")) {
+			// --Unknown Shipper click
+			WebElement UnShipper = isElementPresent("TLKSDesignate_id");
+			act.moveToElement(UnShipper).build().perform();
+			wait.until(ExpectedConditions.visibilityOf(UnShipper));
+			wait.until(ExpectedConditions.elementToBeClickable(UnShipper));
+			act.moveToElement(UnShipper).build().perform();
+			js.executeScript("arguments[0].click();", UnShipper);
+			logs.info("Clicked on KS Designate");
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
+
+			// --Wait for pop up of Unknown Shipper
+			wait.until(ExpectedConditions
+					.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class=\"modal-dialog modal-sm\"]")));
+
+			// --Click on Confirm Button
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnConfirmExtrernal")));
+			WebElement UnShCOnfirm = isElementPresent("TLKSDesConfm_id");
+			wait.until(ExpectedConditions.elementToBeClickable(UnShCOnfirm));
+			UnShCOnfirm.click();
+			logs.info("Clicked on Confirm button");
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
+
+		} else {
+			// --Unknown Shipper click
+			WebElement UnShipper = isElementPresent("TLUnShipp_id");
+			wait.until(ExpectedConditions.visibilityOf(UnShipper));
+			wait.until(ExpectedConditions.elementToBeClickable(UnShipper));
+			act.moveToElement(UnShipper).build().perform();
+			js.executeScript("arguments[0].click();", UnShipper);
+			logs.info("Clicked on Unknown Shipper");
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
+
+			// --Wait for pop up of Unknown Shipper
+			wait.until(ExpectedConditions
+					.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class=\"modal-dialog modal-sm\"]")));
+
+			// --Click on Confirm Button
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnConfirmExtrernal")));
+			WebElement UnShCOnfirm = isElementPresent("TLUnShConfrm_id");
+			wait.until(ExpectedConditions.elementToBeClickable(UnShCOnfirm));
+			UnShCOnfirm.click();
+			logs.info("Clicked on Confirm button");
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
+		}
 
 		// --Scroll to get Rate
 		js.executeScript("window.scrollBy(0,400)", "");
@@ -201,6 +236,33 @@ public class FedExCILOrderCreation extends BaseInit {
 		isElementPresent("TLSaveChanges_id").click();
 		logs.info("Clicked on Save Changes button");
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
+
+		try {
+			wait.until(ExpectedConditions
+					.visibilityOfElementLocated(By.xpath("//*[@id=\"idValidationforMain\"]//ul[@id=\"errorid\"]")));
+			String Valmsg = isElementPresent("OCValOnePack_xpath").getText();
+			logs.info("Validation message is displayed=" + Valmsg);
+			if (Valmsg.contains("Commodity is required for NFO services.")) {
+
+				// --Commodity
+				WebElement Commodity = isElementPresent("TLCommodity_id");
+				act.moveToElement(Commodity).build().perform();
+				wait.until(ExpectedConditions.visibilityOf(Commodity));
+				wait.until(ExpectedConditions.elementToBeClickable(Commodity));
+				Commodity.clear();
+				Commodity.sendKeys("Boxes");
+				logs.info("Entered commodity");
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
+
+				// --Click on Save Changes
+				isElementPresent("TLSaveChanges_id").click();
+				logs.info("Clicked on Save Changes button");
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
+
+			}
+		} catch (Exception ee) {
+			logs.info("validation is not displayed that Commodity is required for NFO services.");
+		}
 	}
 
 	public void selectFlight() throws InterruptedException {

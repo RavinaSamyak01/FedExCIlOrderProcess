@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 import fdxCIL_BasePackage.BaseInit;
 import fdxCIL_OrderProcess.FedExCILOrderCreation;
 
-
 public class TCAcknowledge extends BaseInit {
 
 	@Test
@@ -40,6 +39,7 @@ public class TCAcknowledge extends BaseInit {
 			}
 
 			if (svc.equals("SD") || svc.equals("PA") || svc.equals("AIR") || svc.equals("FRA")) {
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 				WebElement TCAckBtn = isElementPresent("TLAckBTn2_id");
 				wait.until(ExpectedConditions.elementToBeClickable(TCAckBtn));
 				TCAckBtn.click();

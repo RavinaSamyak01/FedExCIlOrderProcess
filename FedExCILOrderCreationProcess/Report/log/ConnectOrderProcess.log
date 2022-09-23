@@ -1,0 +1,42 @@
+2022-09-23 17:18:07,223 - SD -INFO - initialization of the properties file is done
+2022-09-23 17:18:07,547 - io.github.bonigarcia.wdm.WebDriverManager -INFO - Using chromedriver 105.0.5195.52 (since Google Chrome 105 is installed in your machine)
+2022-09-23 17:18:07,570 - io.github.bonigarcia.wdm.WebDriverManager -INFO - Exporting webdriver.chrome.driver as C:\Users\rprajapati\.m2\repository\webdriver\chromedriver\win32\105.0.5195.52\chromedriver.exe
+2022-09-23 17:18:31,682 - SD -INFO - Entered UserName
+2022-09-23 17:18:32,819 - SD -INFO - Entered Password
+2022-09-23 17:18:33,962 - SD -INFO - Login done
+2022-09-23 17:19:05,301 - SD -INFO - Clicked on Operations
+2022-09-23 17:19:05,446 - SD -INFO - Clicked on TaskLog
+2022-09-23 17:19:15,925 - SD -INFO - Click on Edit Order Tab
+2022-09-23 17:19:22,496 - SD -INFO - Service is==SD
+2022-09-23 17:19:22,843 - SD -INFO - Clicked on KS Designate
+2022-09-23 17:19:27,996 - SD -INFO - Clicked on Confirm button
+2022-09-23 17:19:28,128 - SD -INFO - Scroll down to Get the Rate
+2022-09-23 17:19:28,185 - SD -INFO - Clicked on Save Changes button
+2022-09-23 17:19:28,266 - SD -INFO - Validation message is displayed=Commodity is required for NFO services.
+2022-09-23 17:19:28,626 - SD -INFO - Entered commodity
+2022-09-23 17:19:28,709 - SD -INFO - Clicked on Save Changes button
+2022-09-23 17:19:33,640 - SD -INFO - Clicked on Job Status Tab
+2022-09-23 17:19:35,415 - SD -INFO - Clicked on Select Flight button
+2022-09-23 17:19:46,636 - SD -INFO - Selected 1st flight
+2022-09-23 17:19:47,269 - SD -INFO - Clicked on Assign button
+2022-09-23 17:20:01,208 - SD -INFO - Stage=CSR ACKNOWLEDGE
+2022-09-23 17:20:03,056 - SD -INFO - ServiceID=SD
+2022-09-23 17:20:03,121 - SD -INFO - Stage=TC ACKNOWLEDGE
+2022-09-23 17:20:03,224 - SD -INFO - Clicked on TC Acknowledge button
+2022-09-23 17:20:06,109 - SD -INFO - Service is==SD
+2022-09-23 17:20:36,514 - SD -ERROR - org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="lblStages"][contains(text(),'Ready For Dispatch')] (tried for 30 second(s) with 500 milliseconds interval)
+2022-09-23 17:20:36,668 - SD -INFO - READY FOR DISPATCH Not Exist in Flow!!
+2022-09-23 17:20:36,715 - SD -INFO - ServiceID=SD
+2022-09-23 17:21:07,238 - SD -ERROR - org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="lblStages"][contains(text(),'Pickup')] (tried for 30 second(s) with 500 milliseconds interval)
+2022-09-23 17:21:07,430 - SD -INFO - PICKUP Not Exist in Flow!!
+2022-09-23 17:21:37,557 - SD -ERROR - org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="lblStages"][contains(text(),'Drop @ Origin')] (tried for 30 second(s) with 500 milliseconds interval)
+2022-09-23 17:21:37,719 - SD -INFO - DROP @ ORIGIN Not Exist in Flow!!
+2022-09-23 17:22:08,003 - SD -ERROR - org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="lblStages"][contains(text(),'Send Del Alert')] (tried for 30 second(s) with 500 milliseconds interval)
+2022-09-23 17:22:08,132 - SD -INFO - SEND DEL ALERT Not Exist in Flow!!
+2022-09-23 17:22:38,614 - SD -ERROR - org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="lblStages"][contains(text(),'Wait for Departure')] (tried for 30 second(s) with 500 milliseconds interval)
+2022-09-23 17:22:38,720 - SD -INFO - Wait for Departure Not Exist in Flow!!
+2022-09-23 17:23:09,002 - SD -ERROR - org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="lblStages"][contains(text(),'ON BOARD')] (tried for 30 second(s) with 500 milliseconds interval)
+2022-09-23 17:23:09,093 - SD -INFO - Board Not Exist in Flow!!
+2022-09-23 17:23:13,371 - SD -INFO - Logout Message is displayed==You have successfully logged out!
+2022-09-23 17:23:13,371 - SD -INFO - Logout done
+2022-09-23 17:23:14,181 - SD -INFO - ====Sending Email=====

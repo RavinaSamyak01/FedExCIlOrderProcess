@@ -50,7 +50,7 @@ public class Pickup extends BaseInit {
 			if (svc.equals("LOC") || svc.equals("P3P") || svc.equals("DRV") || svc.equals("SDC") || svc.equals("FRG")) {
 
 				// --Get the timeZone
-				String tzone = isElementPresent("TLLOCDActTimZone_id").getText();
+				String tzone = isElementPresent("TLLPUTimeZone_id").getText();
 				String rectime = getTimeAsTZone(tzone);
 
 				// --Enter Actual Pickup Time
@@ -105,7 +105,7 @@ public class Pickup extends BaseInit {
 						wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 
 						// --Get the timeZone
-						tzone = isElementPresent("TLLOCDActTimZone_id").getText();
+						tzone = isElementPresent("TLLPUTimeZone_id").getText();
 						rectime = getTimeAsTZone(tzone);
 
 						// --Enter Actual Pickup Time
@@ -134,7 +134,7 @@ public class Pickup extends BaseInit {
 			if (svc.equals("SD") || svc.equals("PA") || svc.equals("AIR") || svc.equals("FRA")) {
 
 				// --Get the timeZone
-				String tzone = isElementPresent("TLLOCDActTimZone_id").getText();
+				String tzone = isElementPresent("TLLPUTimeZone_id").getText();
 				String rectime = getTimeAsTZone(tzone);
 
 				// --Enter Actual Pickup Time
@@ -190,7 +190,7 @@ public class Pickup extends BaseInit {
 						wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 
 						// --Get the timeZone
-						tzone = isElementPresent("TLLOCDActTimZone_id").getText();
+						tzone = isElementPresent("TLLPUTimeZone_id").getText();
 						rectime = getTimeAsTZone(tzone);
 
 						// --Enter Actual Pickup Time

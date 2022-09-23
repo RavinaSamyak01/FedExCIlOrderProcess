@@ -1,0 +1,42 @@
+2022-09-23 17:18:07,223 [main] INFO SD - initialization of the properties file is done
+2022-09-23 17:18:07,547 [main] INFO io.github.bonigarcia.wdm.WebDriverManager - Using chromedriver 105.0.5195.52 (since Google Chrome 105 is installed in your machine)
+2022-09-23 17:18:07,570 [main] INFO io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\rprajapati\.m2\repository\webdriver\chromedriver\win32\105.0.5195.52\chromedriver.exe
+2022-09-23 17:18:31,682 [main] INFO SD - Entered UserName
+2022-09-23 17:18:32,819 [main] INFO SD - Entered Password
+2022-09-23 17:18:33,962 [main] INFO SD - Login done
+2022-09-23 17:19:05,301 [main] INFO SD - Clicked on Operations
+2022-09-23 17:19:05,446 [main] INFO SD - Clicked on TaskLog
+2022-09-23 17:19:15,925 [main] INFO SD - Click on Edit Order Tab
+2022-09-23 17:19:22,496 [main] INFO SD - Service is==SD
+2022-09-23 17:19:22,843 [main] INFO SD - Clicked on KS Designate
+2022-09-23 17:19:27,996 [main] INFO SD - Clicked on Confirm button
+2022-09-23 17:19:28,128 [main] INFO SD - Scroll down to Get the Rate
+2022-09-23 17:19:28,185 [main] INFO SD - Clicked on Save Changes button
+2022-09-23 17:19:28,266 [main] INFO SD - Validation message is displayed=Commodity is required for NFO services.
+2022-09-23 17:19:28,626 [main] INFO SD - Entered commodity
+2022-09-23 17:19:28,709 [main] INFO SD - Clicked on Save Changes button
+2022-09-23 17:19:33,640 [main] INFO SD - Clicked on Job Status Tab
+2022-09-23 17:19:35,415 [main] INFO SD - Clicked on Select Flight button
+2022-09-23 17:19:46,636 [main] INFO SD - Selected 1st flight
+2022-09-23 17:19:47,269 [main] INFO SD - Clicked on Assign button
+2022-09-23 17:20:01,208 [main] INFO SD - Stage=CSR ACKNOWLEDGE
+2022-09-23 17:20:03,056 [main] INFO SD - ServiceID=SD
+2022-09-23 17:20:03,121 [main] INFO SD - Stage=TC ACKNOWLEDGE
+2022-09-23 17:20:03,224 [main] INFO SD - Clicked on TC Acknowledge button
+2022-09-23 17:20:06,109 [main] INFO SD - Service is==SD
+2022-09-23 17:20:36,514 [main] ERROR SD - org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="lblStages"][contains(text(),'Ready For Dispatch')] (tried for 30 second(s) with 500 milliseconds interval)
+2022-09-23 17:20:36,668 [main] INFO SD - READY FOR DISPATCH Not Exist in Flow!!
+2022-09-23 17:20:36,715 [main] INFO SD - ServiceID=SD
+2022-09-23 17:21:07,238 [main] ERROR SD - org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="lblStages"][contains(text(),'Pickup')] (tried for 30 second(s) with 500 milliseconds interval)
+2022-09-23 17:21:07,430 [main] INFO SD - PICKUP Not Exist in Flow!!
+2022-09-23 17:21:37,557 [main] ERROR SD - org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="lblStages"][contains(text(),'Drop @ Origin')] (tried for 30 second(s) with 500 milliseconds interval)
+2022-09-23 17:21:37,719 [main] INFO SD - DROP @ ORIGIN Not Exist in Flow!!
+2022-09-23 17:22:08,003 [main] ERROR SD - org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="lblStages"][contains(text(),'Send Del Alert')] (tried for 30 second(s) with 500 milliseconds interval)
+2022-09-23 17:22:08,132 [main] INFO SD - SEND DEL ALERT Not Exist in Flow!!
+2022-09-23 17:22:38,614 [main] ERROR SD - org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="lblStages"][contains(text(),'Wait for Departure')] (tried for 30 second(s) with 500 milliseconds interval)
+2022-09-23 17:22:38,720 [main] INFO SD - Wait for Departure Not Exist in Flow!!
+2022-09-23 17:23:09,002 [main] ERROR SD - org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="lblStages"][contains(text(),'ON BOARD')] (tried for 30 second(s) with 500 milliseconds interval)
+2022-09-23 17:23:09,093 [main] INFO SD - Board Not Exist in Flow!!
+2022-09-23 17:23:13,371 [main] INFO SD - Logout Message is displayed==You have successfully logged out!
+2022-09-23 17:23:13,371 [main] INFO SD - Logout done
+2022-09-23 17:23:14,181 [main] INFO SD - ====Sending Email=====

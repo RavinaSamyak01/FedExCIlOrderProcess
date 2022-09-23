@@ -11,7 +11,7 @@ import fdxCIL_BasePackage.BaseInit;
 
 public class SendPull extends BaseInit{
 	
-	public static void FedExSendPullAlert() throws Exception {
+	public void FedExSendPullAlert() throws Exception {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;// scroll,click
 		WebDriverWait wait = new WebDriverWait(driver, 50);// wait time
 		
