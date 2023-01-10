@@ -1,42 +1,130 @@
-2022-09-23 17:18:07,223 - SD -INFO - initialization of the properties file is done
-2022-09-23 17:18:07,547 - io.github.bonigarcia.wdm.WebDriverManager -INFO - Using chromedriver 105.0.5195.52 (since Google Chrome 105 is installed in your machine)
-2022-09-23 17:18:07,570 - io.github.bonigarcia.wdm.WebDriverManager -INFO - Exporting webdriver.chrome.driver as C:\Users\rprajapati\.m2\repository\webdriver\chromedriver\win32\105.0.5195.52\chromedriver.exe
-2022-09-23 17:18:31,682 - SD -INFO - Entered UserName
-2022-09-23 17:18:32,819 - SD -INFO - Entered Password
-2022-09-23 17:18:33,962 - SD -INFO - Login done
-2022-09-23 17:19:05,301 - SD -INFO - Clicked on Operations
-2022-09-23 17:19:05,446 - SD -INFO - Clicked on TaskLog
-2022-09-23 17:19:15,925 - SD -INFO - Click on Edit Order Tab
-2022-09-23 17:19:22,496 - SD -INFO - Service is==SD
-2022-09-23 17:19:22,843 - SD -INFO - Clicked on KS Designate
-2022-09-23 17:19:27,996 - SD -INFO - Clicked on Confirm button
-2022-09-23 17:19:28,128 - SD -INFO - Scroll down to Get the Rate
-2022-09-23 17:19:28,185 - SD -INFO - Clicked on Save Changes button
-2022-09-23 17:19:28,266 - SD -INFO - Validation message is displayed=Commodity is required for NFO services.
-2022-09-23 17:19:28,626 - SD -INFO - Entered commodity
-2022-09-23 17:19:28,709 - SD -INFO - Clicked on Save Changes button
-2022-09-23 17:19:33,640 - SD -INFO - Clicked on Job Status Tab
-2022-09-23 17:19:35,415 - SD -INFO - Clicked on Select Flight button
-2022-09-23 17:19:46,636 - SD -INFO - Selected 1st flight
-2022-09-23 17:19:47,269 - SD -INFO - Clicked on Assign button
-2022-09-23 17:20:01,208 - SD -INFO - Stage=CSR ACKNOWLEDGE
-2022-09-23 17:20:03,056 - SD -INFO - ServiceID=SD
-2022-09-23 17:20:03,121 - SD -INFO - Stage=TC ACKNOWLEDGE
-2022-09-23 17:20:03,224 - SD -INFO - Clicked on TC Acknowledge button
-2022-09-23 17:20:06,109 - SD -INFO - Service is==SD
-2022-09-23 17:20:36,514 - SD -ERROR - org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="lblStages"][contains(text(),'Ready For Dispatch')] (tried for 30 second(s) with 500 milliseconds interval)
-2022-09-23 17:20:36,668 - SD -INFO - READY FOR DISPATCH Not Exist in Flow!!
-2022-09-23 17:20:36,715 - SD -INFO - ServiceID=SD
-2022-09-23 17:21:07,238 - SD -ERROR - org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="lblStages"][contains(text(),'Pickup')] (tried for 30 second(s) with 500 milliseconds interval)
-2022-09-23 17:21:07,430 - SD -INFO - PICKUP Not Exist in Flow!!
-2022-09-23 17:21:37,557 - SD -ERROR - org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="lblStages"][contains(text(),'Drop @ Origin')] (tried for 30 second(s) with 500 milliseconds interval)
-2022-09-23 17:21:37,719 - SD -INFO - DROP @ ORIGIN Not Exist in Flow!!
-2022-09-23 17:22:08,003 - SD -ERROR - org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="lblStages"][contains(text(),'Send Del Alert')] (tried for 30 second(s) with 500 milliseconds interval)
-2022-09-23 17:22:08,132 - SD -INFO - SEND DEL ALERT Not Exist in Flow!!
-2022-09-23 17:22:38,614 - SD -ERROR - org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="lblStages"][contains(text(),'Wait for Departure')] (tried for 30 second(s) with 500 milliseconds interval)
-2022-09-23 17:22:38,720 - SD -INFO - Wait for Departure Not Exist in Flow!!
-2022-09-23 17:23:09,002 - SD -ERROR - org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="lblStages"][contains(text(),'ON BOARD')] (tried for 30 second(s) with 500 milliseconds interval)
-2022-09-23 17:23:09,093 - SD -INFO - Board Not Exist in Flow!!
-2022-09-23 17:23:13,371 - SD -INFO - Logout Message is displayed==You have successfully logged out!
-2022-09-23 17:23:13,371 - SD -INFO - Logout done
-2022-09-23 17:23:14,181 - SD -INFO - ====Sending Email=====
+2023-01-10 10:54:23,770 - SD -INFO - initialization of the properties file is done
+2023-01-10 10:54:24,061 - io.github.bonigarcia.wdm.WebDriverManager -INFO - Using chromedriver 108.0.5359.71 (since Google Chrome 108 is installed in your machine)
+2023-01-10 10:54:24,081 - io.github.bonigarcia.wdm.WebDriverManager -INFO - Exporting webdriver.chrome.driver as C:\Users\rprajapati\.m2\repository\webdriver\chromedriver\win32\108.0.5359.71\chromedriver.exe
+2023-01-10 10:54:52,775 - SD -INFO - Entered UserName
+2023-01-10 10:54:54,029 - SD -INFO - Entered Password
+2023-01-10 10:54:55,274 - SD -INFO - Login done
+2023-01-10 10:55:03,381 - SD -INFO - Clicked on Operations
+2023-01-10 10:55:03,671 - SD -INFO - Clicked on TaskLog
+2023-01-10 10:55:17,059 - SD -INFO - Service is==SD
+2023-01-10 10:55:17,504 - SD -INFO - Click on Edit Order Tab
+2023-01-10 10:55:23,087 - SD -INFO - Service is==SD
+2023-01-10 10:55:23,412 - SD -INFO - Clicked on KS Designate
+2023-01-10 10:55:24,926 - SD -INFO - Clicked on Confirm button
+2023-01-10 10:55:25,143 - SD -INFO - Scroll down to Get the Rate
+2023-01-10 10:55:25,239 - SD -INFO - Clicked on Save Changes button
+2023-01-10 10:55:25,410 - SD -INFO - Validation message is displayed=Commodity is required for NFO services.
+2023-01-10 10:55:25,919 - SD -INFO - Entered commodity
+2023-01-10 10:55:26,159 - SD -INFO - Clicked on Save Changes button
+2023-01-10 10:55:28,161 - SD -INFO - Clicked on Job Status Tab
+2023-01-10 10:55:30,676 - SD -INFO - Clicked on Select Flight button
+2023-01-10 10:55:38,206 - SD -INFO - Selected 1st flight
+2023-01-10 10:55:39,046 - SD -INFO - Clicked on Assign button
+2023-01-10 10:55:42,270 - SD -INFO - Stage=CSR ACKNOWLEDGE
+2023-01-10 10:55:44,278 - SD -INFO - ServiceID=SD
+2023-01-10 10:55:44,367 - SD -INFO - Stage=TC ACKNOWLEDGE
+2023-01-10 10:55:44,618 - SD -INFO - Clicked on TC Acknowledge button
+2023-01-10 10:55:46,527 - SD -INFO - Service is==SD
+2023-01-10 10:55:46,692 - SD -INFO - Stage=SEND PULL ALERT
+2023-01-10 10:55:46,963 - SD -INFO - Email is selected as a Contact By
+2023-01-10 10:55:47,315 - SD -INFO - Entered EmailID
+2023-01-10 10:55:47,491 - SD -INFO - Entered Spoke With
+2023-01-10 10:55:47,702 - SD -INFO - Clicked on Send Pull button
+2023-01-10 10:55:50,867 - SD -INFO - Service is==SD
+2023-01-10 10:55:50,962 - SD -INFO - Stage=READY FOR DISPATCH
+2023-01-10 10:55:51,207 - SD -INFO - Email is selected as a Contact By
+2023-01-10 10:55:51,576 - SD -INFO - Entered EmailID
+2023-01-10 10:55:51,793 - SD -INFO - Entered Spoke With
+2023-01-10 10:55:51,997 - SD -INFO - Clicked on Alert&Confirm button
+2023-01-10 10:55:54,412 - SD -INFO - ServiceID=SD
+2023-01-10 10:55:54,501 - SD -INFO - Stage=CONFIRM PULL ALERT
+2023-01-10 10:55:54,624 - SD -INFO - Click on Confirm Pull Alert button
+2023-01-10 10:56:10,090 - SD -INFO - ServiceID=SD
+2023-01-10 10:56:10,267 - SD -INFO - Stage=CONFIRM PULL
+2023-01-10 10:56:10,532 - SD -INFO - Click on Confirm Pull  button
+2023-01-10 10:56:10,766 - SD -INFO - Validation message is displayed=Part Pull time Required.
+2023-01-10 10:56:10,827 - SD -INFO - ZoneID of is==EST
+2023-01-10 10:56:10,828 - SD -INFO - 00:26
+2023-01-10 10:56:11,147 - SD -INFO - Enter Actual Part Pull time
+2023-01-10 10:56:11,367 - SD -INFO - Click on Confirm Pull  button
+2023-01-10 10:56:12,124 - SD -INFO - Validation message is displayed=Parameter(s) are modified. Please recalculate customer charges.
+2023-01-10 10:56:13,175 - SD -INFO - Click on Edit Order Tab
+2023-01-10 10:56:21,949 - SD -INFO - Click on Recalculate button
+2023-01-10 10:56:28,551 - SD -INFO - Click on Save Changes button
+2023-01-10 10:56:36,060 - SD -INFO - Click on Job Overview Tab
+2023-01-10 10:56:38,441 - SD -INFO - ZoneID of is==EST
+2023-01-10 10:56:38,443 - SD -INFO - 00:26
+2023-01-10 10:56:38,832 - SD -INFO - Enter Actual Part Pull time
+2023-01-10 10:56:39,124 - SD -INFO - Click on Confirm Pull  button
+2023-01-10 10:56:39,873 - SD -INFO - Click on Confirm Pull  button
+2023-01-10 10:57:32,367 - SD -INFO - Validation message is not displayed for Recalculate
+2023-01-10 10:57:32,428 - SD -INFO - ServiceID=SD
+2023-01-10 10:57:32,494 - SD -INFO - Stage=PICKUP
+2023-01-10 10:57:32,518 - SD -INFO - ZoneID of is==EST
+2023-01-10 10:57:32,518 - SD -INFO - 00:27
+2023-01-10 10:57:32,729 - SD -INFO - Enter Actual pickup time
+2023-01-10 10:57:32,953 - SD -INFO - Click on Confirm PickUp  button
+2023-01-10 10:57:33,605 - SD -INFO - Validation message is displayed=Parameter(s) are modified. Please recalculate customer charges.
+2023-01-10 10:57:34,294 - SD -INFO - Click on Edit Order Tab
+2023-01-10 10:57:38,525 - SD -INFO - Click on Recalculate button
+2023-01-10 10:57:40,030 - SD -INFO - Click on Save Changes button
+2023-01-10 10:57:42,727 - SD -INFO - Click on Job Overview Tab
+2023-01-10 10:57:44,999 - SD -INFO - ZoneID of is==EST
+2023-01-10 10:57:44,999 - SD -INFO - 00:27
+2023-01-10 10:57:45,137 - SD -INFO - Enter Actual pickup time
+2023-01-10 10:57:47,279 - SD -INFO - Click on Confirm PU button
+2023-01-10 10:57:49,605 - SD -INFO - Stage=DROP @ ORIGIN
+2023-01-10 10:57:49,630 - SD -INFO - ZoneID of is==EST
+2023-01-10 10:57:49,630 - SD -INFO - 00:27
+2023-01-10 10:57:49,726 - SD -INFO - Enter Drop off time
+2023-01-10 10:57:49,749 - SD -INFO - Click on Confirm Drop button
+2023-01-10 10:57:49,812 - SD -INFO - awb
+2023-01-10 10:57:49,883 - SD -INFO - Click on Add AirBill
+2023-01-10 10:57:50,110 - SD -INFO - Click on Add AirBill
+2023-01-10 10:57:50,273 - SD -INFO - Enter Quantity
+2023-01-10 10:57:50,571 - SD -INFO - Enter Weight
+2023-01-10 10:57:50,644 - SD -INFO - Click on Save Bill button
+2023-01-10 10:57:50,672 - SD -INFO - Description Required.
+2023-01-10 10:57:50,836 - SD -INFO - Enter Description
+2023-01-10 10:57:51,455 - SD -INFO - Click on Save Bill button
+2023-01-10 10:57:51,473 - SD -INFO - Validation for Account is not displayed
+2023-01-10 10:57:51,560 - SD -INFO - Click on Confirm Drop button
+2023-01-10 10:58:24,029 - SD -INFO - Validation message is not displayed for Recalculate the charges
+2023-01-10 10:58:24,161 - SD -INFO - Stage=SEND DEL ALERT
+2023-01-10 10:58:24,212 - SD -INFO - Selected Email option as Contacted
+2023-01-10 10:58:30,107 - SD -INFO - Stage=WAIT FOR DEPARTURE
+2023-01-10 10:58:30,134 - SD -INFO - ZoneID of is==EST
+2023-01-10 10:58:30,135 - SD -INFO - 00:28
+2023-01-10 10:58:30,312 - SD -INFO - Enter Departure Time
+2023-01-10 10:58:30,395 - SD -INFO - Click on Depart button
+2023-01-10 10:58:34,007 - SD -INFO - Stage=WAIT FOR ARRIVAL
+2023-01-10 10:58:34,047 - SD -INFO - ZoneID of is==EST
+2023-01-10 10:58:34,048 - SD -INFO - 00:28
+2023-01-10 10:58:34,168 - SD -INFO - Enter Arrival Time
+2023-01-10 10:58:34,228 - SD -INFO - Click on Arrival button
+2023-01-10 10:58:37,115 - SD -INFO - Stage=RECOVER @ DESTINATION
+2023-01-10 10:58:37,141 - SD -INFO - ZoneID of is==EST
+2023-01-10 10:58:37,142 - SD -INFO - 00:28
+2023-01-10 10:58:37,278 - SD -INFO - Enter Arrival Time
+2023-01-10 10:58:37,452 - SD -INFO - Click on Confirm Recover button
+2023-01-10 10:58:39,708 - SD -INFO - ServiceID=SD
+2023-01-10 10:58:39,740 - SD -INFO - Stage=DELIVER
+2023-01-10 10:58:39,766 - SD -INFO - ZoneID of is==EST
+2023-01-10 10:58:39,766 - SD -INFO - 00:28
+2023-01-10 10:58:40,034 - SD -INFO - Enter Signature
+2023-01-10 10:58:40,079 - SD -INFO - Clicked on Confirm DEL button
+2023-01-10 10:58:40,717 - SD -INFO - Validation message is displayed=Parameter(s) are modified. Please recalculate customer charges.
+2023-01-10 10:58:41,464 - SD -INFO - Click on Edit Order Tab
+2023-01-10 10:58:44,753 - SD -INFO - Click on Recalculate button
+2023-01-10 10:58:46,197 - SD -INFO - Click on Save Changes button
+2023-01-10 10:58:50,883 - SD -INFO - Click on Job Overview Tab
+2023-01-10 10:58:58,917 - SD -INFO - Enter Signature
+2023-01-10 10:58:59,020 - SD -INFO - Actual DL TimeZone==EST
+2023-01-10 10:58:59,020 - SD -INFO - ZoneID of is==EST
+2023-01-10 10:58:59,020 - SD -INFO - 00:28
+2023-01-10 10:58:59,020 - SD -INFO - Actual DL Time==00:28
+2023-01-10 10:58:59,099 - SD -INFO - Enter Actual DL Time
+2023-01-10 10:58:59,164 - SD -INFO - Clicked on Confirm DEL button
+2023-01-10 10:59:07,855 - SD -INFO - Logout Message is displayed==You have successfully logged out!
+2023-01-10 10:59:07,855 - SD -INFO - Logout done
+2023-01-10 10:59:08,346 - SD -INFO - ====Sending Email=====

@@ -76,7 +76,7 @@ public class BaseInit {
 			DesiredCapabilities capabilities = new DesiredCapabilities();
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
-			// options.addArguments("--headless", "--window-size=1382, 744");
+			options.addArguments("--headless", "--window-size=1382, 744");
 			options.addArguments("--incognito");
 			options.addArguments("--test-type");
 			options.addArguments("--no-proxy-server");
@@ -87,7 +87,7 @@ public class BaseInit {
 			options.addArguments("--dns-prefetch-disable");
 			options.addArguments("--disable-gpu");
 			// options.addArguments("--start-maximized");
-			// options.addArguments("window-size=1920,1200");
+			options.addArguments("window-size=1920,1200");
 			String downloadFilepath = System.getProperty("user.dir") + "\\src\\main\\resources\\Downloads";
 			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
 			chromePrefs.put("profile.default_content_settings.popups", 0);
@@ -727,6 +727,8 @@ public class BaseInit {
 			timeZone = "CST";
 		} else if (timeZone.equalsIgnoreCase("PDT")) {
 			timeZone = "PST";
+		} else if (timeZone.equalsIgnoreCase("MDT")) {
+			timeZone = "America/Denver";
 		}
 
 		Date date = new Date();

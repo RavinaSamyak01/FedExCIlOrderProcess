@@ -32,8 +32,16 @@ public class Drop extends BaseInit {
 			FedExCILOrderCreation OC = new FedExCILOrderCreation();
 			OC.getStageName();
 
-			// --Get the timeZone
-			String tzone = isElementPresent("TLLOCDActTimZone_id").getText();
+			String tzone = null;
+			if (svc.equalsIgnoreCase("SD")) {
+				// --Get the timeZone
+				tzone = isElementPresent("TLDropOffTimeZone_id").getText();
+				System.out.println("TimeZone=" + tzone);
+			} else {
+				// --Get the timeZone
+				tzone = isElementPresent("TLLOCDActTimZone_id").getText();
+				System.out.println("TimeZone=" + tzone);
+			}
 			String rectime = getTimeAsTZone(tzone);
 
 			// --Enter DropOff time

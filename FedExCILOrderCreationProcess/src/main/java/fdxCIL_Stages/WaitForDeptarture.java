@@ -6,9 +6,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
+import fdxCIL_BasePackage.BaseInit;
 import fdxCIL_OrderProcess.FedExCILOrderCreation;
 
-public class WaitForDeptarture extends FedExCILOrderCreation {
+public class WaitForDeptarture extends BaseInit {
 
 	@Test
 	public void waitForDept() throws Exception {
@@ -27,8 +28,17 @@ public class WaitForDeptarture extends FedExCILOrderCreation {
 			FedExCILOrderCreation OC = new FedExCILOrderCreation();
 			OC.getStageName();
 
+			String tzone = null;
+			if (svc.equalsIgnoreCase("SD")) {
+				// --Get the timeZone
+				tzone = isElementPresent("TLWFDTimeZone_id").getText();
+				System.out.println("TimeZone=" + tzone);
+			} else {
+				// --Get the timeZone
+				tzone = isElementPresent("TLLOCDActTimZone_id").getText();
+				System.out.println("TimeZone=" + tzone);
+			}
 			// --Get the timeZone
-			String tzone = isElementPresent("TLLOCDActTimZone_id").getText();
 			String rectime = getTimeAsTZone(tzone);
 
 			// --Departure Time

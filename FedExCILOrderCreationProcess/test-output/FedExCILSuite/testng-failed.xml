@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [FedExCILSuite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="FedExCILOrderCreation(failed)">
+    <classes>
+      <class name="fdxCIL_OrderProcess.FedExCILOrderCreation">
+        <methods>
+          <include name="SendEmail"/>
+          <include name="testMethodName"/>
+          <include name="fedEXCILOrderCreate"/>
+          <include name="getResult"/>
+          <include name="beforeMethod"/>
+        </methods>
+      </class> <!-- fdxCIL_OrderProcess.FedExCILOrderCreation -->
+    </classes>
+  </test> <!-- FedExCILOrderCreation(failed) -->
+  <test thread-count="5" name="H3P(failed)">
+    <classes>
+      <class name="fdxCIL_OrderProcess.H3P">
+        <methods>
+          <include name="SendEmail"/>
+          <include name="testMethodName"/>
+          <include name="FedExH3P"/>
+          <include name="getResult"/>
+          <include name="beforeMethod"/>
+        </methods>
+      </class> <!-- fdxCIL_OrderProcess.H3P -->
+    </classes>
+  </test> <!-- H3P(failed) -->
+  <test thread-count="5" name="SD(failed)">
+    <classes>
+      <class name="fdxCIL_OrderProcess.SD">
+        <methods>
+          <include name="SendEmail"/>
+          <include name="testMethodName"/>
+          <include name="FedExSD"/>
+          <include name="getResult"/>
+          <include name="beforeMethod"/>
+        </methods>
+      </class> <!-- fdxCIL_OrderProcess.SD -->
+    </classes>
+  </test> <!-- SD(failed) -->
+  <test thread-count="5" name="LOC(failed)">
+    <classes>
+      <class name="fdxCIL_OrderProcess.LOC">
+        <methods>
+          <include name="FedExLOC"/>
+          <include name="SendEmail"/>
+          <include name="testMethodName"/>
+          <include name="getResult"/>
+          <include name="beforeMethod"/>
+        </methods>
+      </class> <!-- fdxCIL_OrderProcess.LOC -->
+    </classes>
+  </test> <!-- LOC(failed) -->
+</suite> <!-- Failed suite [FedExCILSuite] -->

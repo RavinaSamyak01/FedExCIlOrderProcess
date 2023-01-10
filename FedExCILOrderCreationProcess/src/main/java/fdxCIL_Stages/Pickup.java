@@ -1,6 +1,7 @@
 package fdxCIL_Stages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -17,7 +18,7 @@ public class Pickup extends BaseInit {
 	public void confirmPickup() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, 30);// wait time
 		Actions act = new Actions(driver);
-		// JavascriptExecutor js = (JavascriptExecutor) driver;
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 
@@ -144,8 +145,11 @@ public class Pickup extends BaseInit {
 				logs.info("Enter Actual pickup time");
 
 				// --Click on Confirm PU button
-				isElementPresent("TLPUConfPU2_id").click();
-				logs.info("Click on Confirm PU button");
+				WebElement ConfPU = isElementPresent("TLPUConfPU2_id");
+				wait.until(ExpectedConditions.elementToBeClickable(ConfPU));
+				act.moveToElement(ConfPU).build().perform();
+				js.executeScript("arguments[0].click();", ConfPU);
+				logs.info("Click on Confirm PickUp  button");
 				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 
 				try {
@@ -200,7 +204,7 @@ public class Pickup extends BaseInit {
 						logs.info("Enter Actual pickup time");
 
 						// --Click on Confirm PU button
-						WebElement ConfPU = isElementPresent("TLPUConfPU2_id");
+						ConfPU = isElementPresent("TLPUConfPU2_id");
 						wait.until(ExpectedConditions.elementToBeClickable(ConfPU));
 						Thread.sleep(2000);
 						ConfPU.click();
