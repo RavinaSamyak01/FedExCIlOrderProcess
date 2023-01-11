@@ -33,9 +33,6 @@ public class SD extends BaseInit {
 		// get SD jobID
 		FedExCILOrderCreation OC = new FedExCILOrderCreation();
 
-		// --Create SD Job
-		OC.fedEXCILOrderCreate(3);
-
 		// --Search FedExCILJob
 		OC.searchFedExCILJob(3);
 
@@ -110,6 +107,9 @@ public class SD extends BaseInit {
 
 		// --Refresh App
 		OC.refreshApp();
+		
+		
+		msg.append("\n\n\n");
 
 	}
 }

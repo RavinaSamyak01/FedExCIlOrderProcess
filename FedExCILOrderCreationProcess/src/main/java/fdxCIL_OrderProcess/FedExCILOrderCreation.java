@@ -12,79 +12,78 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Test;
+import org.testng.annotations.BeforeTest;
 import fdxCIL_BasePackage.BaseInit;
 
 public class FedExCILOrderCreation extends BaseInit {
 	static double OrderCreationTime;
 	static String jobid;
 
-	@Test
-	public void fedEXCILOrderCreate(int i) throws Exception {
+	@BeforeTest
+	public void fedEXCILOrderCreate() throws Exception {
 		long start, end;
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		// JavascriptExecutor jse = (JavascriptExecutor) driver;
+		msg.append("FedExCIL Job creation Started" + "\n");
 
-		// for (int i = 1; i < 16; i++) {
-		String file = getData("Sheet1", i, 0);
+		for (int i = 1; i < 5; i++) {
+			String file = getData("Sheet1", i, 0);
 
-		// String TFolder=".//TestFiles//";
-		String TFileFolder = System.getProperty("user.dir") + "\\src\\main\\resources\\TestFiles\\";
-		driver.findElement(By.id("MainContent_ctrlfileupload")).sendKeys(TFileFolder + file + ".txt");
-		Thread.sleep(1000);
-		driver.findElement(By.id("MainContent_btnProcess")).click();
+			// String TFolder=".//TestFiles//";
+			String TFileFolder = System.getProperty("user.dir") + "\\src\\main\\resources\\TestFiles\\";
+			driver.findElement(By.id("MainContent_ctrlfileupload")).sendKeys(TFileFolder + file + ".txt");
+			driver.findElement(By.id("MainContent_btnProcess")).click();
 
-		// --start time
-		start = System.nanoTime();
-		Thread.sleep(3000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblresult")));
-		String Job = driver.findElement(By.id("MainContent_lblresult")).getText();
-		end = System.nanoTime();
-		OrderCreationTime = (end - start) * 1.0e-9;
-		System.out.println("Order Creation Time (in Seconds) = " + OrderCreationTime);
-		msg.append("Order Creation Time (in Seconds) = " + OrderCreationTime + "\n");
+			// --start time
+			start = System.nanoTime();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblresult")));
+			String Job = driver.findElement(By.id("MainContent_lblresult")).getText();
+			end = System.nanoTime();
+			OrderCreationTime = (end - start) * 1.0e-9;
+			System.out.println("Order Creation Time (in Seconds) = " + OrderCreationTime);
+			msg.append("Order Creation Time (in Seconds) = " + OrderCreationTime + "\n");
 
-		try {
-			if (Job.contains("<LoadTenderResult>")) {
+			try {
+				if (Job.contains("<LoadTenderResult>")) {
 
-				// System.out.println(Job);
+					// System.out.println(Job);
 
-				Pattern pattern = Pattern.compile("\\w+([0-9]+)\\w+([0-9]+)");
-				Matcher matcher = pattern.matcher(Job);
-				matcher.find();
-				jobid = matcher.group();
-				System.out.println("JOB# " + jobid);
+					Pattern pattern = Pattern.compile("\\w+([0-9]+)\\w+([0-9]+)");
+					Matcher matcher = pattern.matcher(Job);
+					matcher.find();
+					jobid = matcher.group();
+					System.out.println("JOB# " + jobid);
 
-				// -Set JobID in excel
-				setData("Sheet1", i, 1, jobid);
-				msg.append("JOB # " + jobid + "\n");
-				getScreenshot(driver, "FedExCILResponse");
+					// -Set JobID in excel
+					setData("Sheet1", i, 1, jobid);
+					msg.append("JOB # " + jobid + "\n");
+					getScreenshot(driver, "FedExCILResponse");
 
-			} else {
-				msg.append("Response== " + Job + "\n");
+				} else {
+					msg.append("Response== " + Job + "\n");
+					msg.append("Order not created==FAIL" + "\n");
+					getScreenshot(driver, "FedExCILResponse");
+
+				}
+			} catch (Exception e) {
 				msg.append("Order not created==FAIL" + "\n");
+				msg.append("Response== " + Job + "\n");
 				getScreenshot(driver, "FedExCILResponse");
 
 			}
-		} catch (Exception e) {
-			msg.append("Order not created==FAIL" + "\n");
-			msg.append("Response== " + Job + "\n");
-			getScreenshot(driver, "FedExCILResponse");
 
+			// }
 		}
+		msg.append("FedExCIL Job creation completed" + "\n\n");
 
-		// }
-		Thread.sleep(5000);
-
+		// Login
+		login();
 	}
 
 	public void searchFedExCILJob(int i) throws Exception {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;// scroll,click
 		WebDriverWait wait = new WebDriverWait(driver, 30);// wait time
 		Actions act = new Actions(driver);
-
-		// Login
-		login();
 
 		// --Go To Operations
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("a_operations")));
@@ -109,6 +108,7 @@ public class FedExCILOrderCreation extends BaseInit {
 
 		String JobId = getData("Sheet1", i, 1);
 		msg.append("JOBID=" + JobId + "\n");
+		driver.findElement(By.id("txtContains")).clear();
 		driver.findElement(By.id("txtContains")).sendKeys(JobId);
 		driver.findElement(By.id("txtContains")).sendKeys(Keys.TAB);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
@@ -116,14 +116,25 @@ public class FedExCILOrderCreation extends BaseInit {
 		WebElement Search = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnGlobalSearch")));
 		jse.executeScript("arguments[0].click();", Search);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
+
+		String SVC = getServiceID();
+		// --Set the data in excel
+		setData("Sheet1", i, 2, SVC);
+
 	}
 
 	public String getServiceID() {
 		// --Get ServiceID
 
-		String svc = driver.findElement(By.id("lblServiceID")).getText();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;// scroll,click
+		WebDriverWait wait = new WebDriverWait(driver, 30);// wait time
+		Actions act = new Actions(driver);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lblServiceID")));
+		String svc = isElementPresent("TLServID_id").getText();
 		System.out.println(svc);
 		logs.info("Service is==" + svc);
+		msg.append("Service=" + svc + "\n");
 
 		return svc;
 	}
@@ -287,7 +298,7 @@ public class FedExCILOrderCreation extends BaseInit {
 
 	public void selectFlight() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		// JavascriptExecutor js = (JavascriptExecutor) driver;
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		Actions act = new Actions(driver);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 
@@ -328,7 +339,7 @@ public class FedExCILOrderCreation extends BaseInit {
 		// --Click on Assign button
 		WebElement AssignFlight = isElementPresent("TLAssignFlght_xpath");
 		wait.until(ExpectedConditions.elementToBeClickable(AssignFlight));
-		AssignFlight.click();
+		js.executeScript("arguments[0].click();", AssignFlight);
 		logs.info("Clicked on Assign button");
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 	}

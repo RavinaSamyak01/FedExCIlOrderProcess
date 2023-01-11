@@ -1,13 +1,13 @@
 package fdxCIL_Stages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import fdxCIL_BasePackage.BaseInit;
 import fdxCIL_OrderProcess.FedExCILOrderCreation;
-
 
 public class CSRAcknowledge extends BaseInit {
 
@@ -17,8 +17,10 @@ public class CSRAcknowledge extends BaseInit {
 
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 
-		String svc = driver.findElement(By.id("lblServiceID")).getText();
+		// --Get the ServiceID
+		String svc = isElementPresent("TLServID_id").getText();
 		System.out.println(svc);
+		logs.info("ServiceID=" + svc);
 
 		try {
 
@@ -30,11 +32,21 @@ public class CSRAcknowledge extends BaseInit {
 			OC.getStageName();
 
 			if (svc.equals("LOC") || svc.equals("P3P")) {
-				driver.findElement(By.id("GreenTick")).click();
+				WebElement TCACK = isElementPresent("TLAcknBTN_id");
+				wait.until(ExpectedConditions.elementToBeClickable(TCACK));
+				Thread.sleep(2000);
+				TCACK.click();
+				logs.info("Click on Acknowledge button");
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 			}
 
 			if (svc.equals("SD") || svc.equals("PA")) {
-				driver.findElement(By.id("btnGreenTick")).click();
+				WebElement TCACK = isElementPresent("TLAckBTn2_id");
+				wait.until(ExpectedConditions.elementToBeClickable(TCACK));
+				Thread.sleep(2000);
+				TCACK.click();
+				logs.info("Click on Acknowledge button");
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 			}
 		} catch (Exception e) {
 			logs.error(e);

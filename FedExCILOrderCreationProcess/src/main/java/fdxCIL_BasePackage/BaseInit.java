@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
+import java.util.ResourceBundle;
 import java.util.TimeZone;
 
 import org.apache.commons.io.FileUtils;
@@ -58,7 +59,8 @@ public class BaseInit {
 
 	public static StringBuilder msg = new StringBuilder();
 	public static Properties storage = new Properties();
-
+	public static ResourceBundle rb = ResourceBundle.getBundle("config");
+	public static String EmailID = rb.getString("MainEmailAddress");
 	String BaseURL;
 
 	@BeforeSuite
@@ -76,7 +78,7 @@ public class BaseInit {
 			DesiredCapabilities capabilities = new DesiredCapabilities();
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
-			options.addArguments("--headless", "--window-size=1382, 744");
+			//options.addArguments("--headless", "--window-size=1382, 744");
 			options.addArguments("--incognito");
 			options.addArguments("--test-type");
 			options.addArguments("--no-proxy-server");
@@ -630,7 +632,6 @@ public class BaseInit {
 		// Send Details email
 
 		msg.append("\n" + "*** This is automated generated email and send through automation script ***" + "\n");
-		msg.append("Process URL : " + BaseURL + "\n");
 		msg.append("Please find attached file of Report and Log");
 
 		String Env = storage.getProperty("Env");

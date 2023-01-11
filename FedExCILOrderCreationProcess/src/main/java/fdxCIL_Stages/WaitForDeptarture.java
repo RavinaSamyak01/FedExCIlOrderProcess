@@ -1,7 +1,10 @@
 package fdxCIL_Stages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
@@ -14,6 +17,8 @@ public class WaitForDeptarture extends BaseInit {
 	@Test
 	public void waitForDept() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, 30);//
+		Actions act = new Actions(driver);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 		String svc = driver.findElement(By.id("lblServiceID")).getText();
@@ -48,7 +53,11 @@ public class WaitForDeptarture extends BaseInit {
 			logs.info("Enter Departure Time");
 
 			// --Click on Depart button
-			isElementPresent("TLWFDDepart_id").click();
+
+			WebElement Depart = isElementPresent("TLWFDDepart_id");
+			wait.until(ExpectedConditions.elementToBeClickable(Depart));
+			act.moveToElement(Depart).build().perform();
+			js.executeScript("arguments[0].click();", Depart);
 			logs.info("Click on Depart button");
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 

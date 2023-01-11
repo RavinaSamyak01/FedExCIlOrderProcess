@@ -6,9 +6,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import fdxCIL_BasePackage.BaseInit;
-import fdxCIL_Stages.ConfirmPu;
-import fdxCIL_Stages.ConfirmPull;
-import fdxCIL_Stages.CustomerDel;
+import fdxCIL_Stages.ConfirmPUAlert;
+import fdxCIL_Stages.ConfirmPULL;
+import fdxCIL_Stages.CustomerDelInProgress;
 
 public class CPU extends BaseInit {
 
@@ -19,23 +19,34 @@ public class CPU extends BaseInit {
 		// get CPU jobID
 		FedExCILOrderCreation OC = new FedExCILOrderCreation();
 
-		// --Create CPU Job
-		OC.fedEXCILOrderCreate(1);
-
 		// --Search FedExCILJob
 		OC.searchFedExCILJob(1);
 
+		// get ServiceID
+		String ServiceID = OC.getServiceID();
+		msg.append("Service=" + ServiceID + "\n");
+
 		// Confirm PU alert
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
-		ConfirmPu.FedExConfirmPuAlert();
+		ConfirmPUAlert CP = new ConfirmPUAlert();
+		CP.confirmPUAlert();
 
 		// confirm Pull
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
-		ConfirmPull CP = new ConfirmPull();
-		CP.FedExConfirmPull();
+		ConfirmPULL pull = new ConfirmPULL();
+		pull.ConfirmPull();
 
 		// Customer Del in progress
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
-		CustomerDel.CustomerDelivery();
+		CustomerDelInProgress CDIP = new CustomerDelInProgress();
+		CDIP.customerDelInProgress();
+
+		// --Refresh App
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
+		OC.refreshApp();
+		
+		
+		msg.append("\n\n\n");
+
 	}
 }

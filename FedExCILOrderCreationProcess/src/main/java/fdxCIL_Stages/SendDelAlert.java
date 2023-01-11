@@ -1,6 +1,7 @@
 package fdxCIL_Stages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -8,7 +9,6 @@ import org.testng.annotations.Test;
 
 import fdxCIL_BasePackage.BaseInit;
 import fdxCIL_OrderProcess.FedExCILOrderCreation;
-
 
 public class SendDelAlert extends BaseInit {
 	@Test
@@ -43,7 +43,11 @@ public class SendDelAlert extends BaseInit {
 			Thread.sleep(1000);
 
 			// --Alert&Confirm button
-			isElementPresent("TLRDAlConfrmBtn_id").click();
+			WebElement AlertConfm = isElementPresent("TLRDAlConfrmBtn_id");
+			wait.until(ExpectedConditions.elementToBeClickable(AlertConfm));
+			Thread.sleep(2000);
+			AlertConfm.click();
+			logs.info("Click on Alert and Confirm button");
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 
 		} catch (Exception e) {

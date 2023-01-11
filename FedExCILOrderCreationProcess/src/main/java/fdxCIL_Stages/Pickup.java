@@ -61,7 +61,10 @@ public class Pickup extends BaseInit {
 				logs.info("Enter Actual pickup time");
 
 				// --Click on Confirm PU button
-				isElementPresent("TLPConfPU_id").click();
+				WebElement ConfPU = isElementPresent("TLPConfPU_id");
+				wait.until(ExpectedConditions.elementToBeClickable(ConfPU));
+				Thread.sleep(2000);
+				ConfPU.click();
 				logs.info("Click on Confirm PU button");
 				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 
@@ -116,7 +119,7 @@ public class Pickup extends BaseInit {
 						logs.info("Enter Actual pickup time");
 
 						// --Click on Confirm PU button
-						WebElement ConfPU = isElementPresent("TLPConfPU_id");
+						ConfPU = isElementPresent("TLPConfPU_id");
 						wait.until(ExpectedConditions.elementToBeClickable(ConfPU));
 						Thread.sleep(2000);
 						ConfPU.click();

@@ -44,6 +44,7 @@ public class TenderTo3P extends FedExCILOrderCreation {
 
 			// --Select Service
 			Select Contacttype = new Select(isElementPresent("TT3Servicedrp_id"));
+			Thread.sleep(2000);
 			Contacttype.selectByVisibleText("FEDEX_GROUND");
 			logs.info("Selected Service");
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
@@ -65,7 +66,14 @@ public class TenderTo3P extends FedExCILOrderCreation {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("txt3pTime")));
 
 			// --Get the timeZone
-			String tzone = isElementPresent("TLLOCDActTimZone_id").getText();
+			String tzone = null;
+			try {
+				tzone = isElementPresent("TLLOCDActTimZone_id").getText();
+
+			} catch (Exception eTimeZone) {
+				tzone = isElementPresent("TT3TimeZone_id").getText();
+
+			}
 			String rectime = getTimeAsTZone(tzone);
 
 			// --Enter Drop Time
@@ -77,8 +85,10 @@ public class TenderTo3P extends FedExCILOrderCreation {
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 
 			// --Click on Tender To 3P
+
 			WebElement Ten3P = isElementPresent("TT3Button_id");
 			wait.until(ExpectedConditions.elementToBeClickable(Ten3P));
+			Thread.sleep(2000);
 			Ten3P.click();
 			logs.info("Clicked on Tender To 3P button");
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));

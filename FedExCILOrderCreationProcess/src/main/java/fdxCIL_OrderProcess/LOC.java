@@ -23,9 +23,6 @@ public class LOC extends BaseInit {
 		// get LOC jobID
 		FedExCILOrderCreation OC = new FedExCILOrderCreation();
 
-		// --Create LOC  Job
-		OC.fedEXCILOrderCreate(4);
-
 		// --Search FedExCILJob
 		OC.searchFedExCILJob(4);
 
@@ -60,6 +57,9 @@ public class LOC extends BaseInit {
 		// --Refresh App
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 		OC.refreshApp();
+		
+		msg.append("\n\n\n");
+
 	}
 
 }

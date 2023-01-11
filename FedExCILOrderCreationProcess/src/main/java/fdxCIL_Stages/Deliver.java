@@ -51,10 +51,12 @@ public class Deliver extends BaseInit {
 				logs.info("Enter Signature");
 
 				// --Click on Confirm DL
-				isElementPresent("TLDConfDL_id").click();
+				WebElement ConDL = isElementPresent("TLDConfDL_id");
+				wait.until(ExpectedConditions.elementToBeClickable(ConDL));
+				jse.executeScript("arguments[0].click();", ConDL);
 				logs.info("Clicked on Confirm DEL button");
 				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
-
+				
 				// --CHeck parameter modify validation
 				OC.reCalc(svc);
 

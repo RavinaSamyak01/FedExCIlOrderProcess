@@ -1,7 +1,9 @@
 package fdxCIL_Stages;
 
 import org.openqa.selenium.By;
-
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,8 +14,8 @@ public class ConfirmPullAlert extends BaseInit {
 
 	public void ConfirmPullAlertstage() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, 50);// wait time
-		// Actions act = new Actions(driver);
-		// JavascriptExecutor js = (JavascriptExecutor) driver;
+		Actions act = new Actions(driver);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 
@@ -31,8 +33,11 @@ public class ConfirmPullAlert extends BaseInit {
 			OC.getStageName();
 
 			// Click on Confirm Pull ALert
-			isElementPresent("TLConfirmPULLAlert_id").click();
-			logs.info("Click on Confirm Pull Alert button");
+			WebElement ConfPullAlert = isElementPresent("TLConfirmPULLAlert_id");
+			wait.until(ExpectedConditions.elementToBeClickable(ConfPullAlert));
+			act.moveToElement(ConfPullAlert).build().perform();
+			js.executeScript("arguments[0].click();", ConfPullAlert);
+			logs.info("Click on Confirm Pull Alert  button");
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 
 		} catch (Exception e) {

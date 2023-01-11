@@ -1,8 +1,10 @@
 package fdxCIL_Stages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
@@ -14,7 +16,10 @@ public class XerWaitForArrival extends FedExCILOrderCreation {
 	@Test
 	public void xerWaitForArr() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, 30);// wait time
+		Actions act = new Actions(driver);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 
+	
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 		String svc = driver.findElement(By.id("lblServiceID")).getText();
 		System.out.println(svc);
@@ -48,7 +53,10 @@ public class XerWaitForArrival extends FedExCILOrderCreation {
 				logs.info("Enter Arrival Time");
 
 				// --Click on Button
-				isElementPresent("TLXWFAButton_id").click();
+				WebElement Arrival = isElementPresent("TLXWFAButton_id");
+				wait.until(ExpectedConditions.elementToBeClickable(Arrival));
+				act.moveToElement(Arrival).build().perform();
+				js.executeScript("arguments[0].click();", Arrival);
 				logs.info("Click on Arrival button");
 				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
 

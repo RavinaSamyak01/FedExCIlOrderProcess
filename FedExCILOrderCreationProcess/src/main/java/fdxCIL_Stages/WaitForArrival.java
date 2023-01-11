@@ -48,9 +48,14 @@ public class WaitForArrival extends FedExCILOrderCreation {
 				logs.info("Enter Arrival Time");
 
 				// --Click on Arrival button
-				isElementPresent("TLWFArrival_id").click();
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
+				WebElement Arrival = isElementPresent("TLWFArrival_id");
+				wait.until(ExpectedConditions.elementToBeClickable(Arrival));
+				Thread.sleep(2000);
+				Arrival.click();
 				logs.info("Click on Arrival button");
 				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loaderDiv")));
+
 			}
 		} catch (Exception e) {
 			logs.error(e);
